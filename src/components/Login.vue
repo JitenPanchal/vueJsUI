@@ -16,6 +16,7 @@
           <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
         </div>
         <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click="login" class="btn btn-primary">Login</button>
+        <p v-if="invalidLoginResponse" class="invalid-label">{{invalidLoginResponse}}</p>
         <hr />
         <button type="button" class="btn btn-link">Reset Password</button>
       </form>
@@ -32,7 +33,8 @@ export default {
   data () {
     return {
       username: 'systemadmin',
-      password: 'Password123'
+      password: 'Password123',
+      invalidLoginResponse: ''
     }
   },
   validations: {
@@ -45,6 +47,7 @@ export default {
   },
   methods: {
     login (event) {
+      this.invalidLoginResponse = ''
       let $buttonLogin = $(event.currentTarget)
       var loadingText = event.currentTarget.dataset.loadingText
       if ($buttonLogin.html() !== loadingText) {
@@ -56,7 +59,12 @@ export default {
         .then(
           response => {
             console.log(response)
+            var result = response.body
             $buttonLogin.html($buttonLogin.data('original-text'))
+            if (!result.isSuccess) {
+              debugger
+              this.invalidLoginResponse = result.message
+            }
           },
           error => {
             console.log(error)
@@ -70,6 +78,10 @@ export default {
 <style scoped>
 .invalid-input {
   border: 1px solid red;
+}
+
+.invalid-label {
+  color: red;
 }
 
 .back {
