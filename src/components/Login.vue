@@ -2,20 +2,21 @@
 <div class="back">
   <div class="div-center">
     <div class="content">
-      <h3>Login</h3>
+      <h3>businessDNA Login</h3>
       <hr />
       <form>
         <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <label for="inputUserName">Username</label>
+          <input id="inputUserName" @input="$v.username.$touch()" v-model="username" class="form-control" placeholder="username" autocomplete="off">
+          <p v-if="$v.username.$error" class="invalid-label">Username is required</p>
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="inputPassword">Password</label>
+          <input id="inputPassword" @input="$v.password.$touch()" type="password" v-model="password" class="form-control" placeholder="password" autocomplete="off" >
+          <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click="login" class="btn btn-primary">Login</button>
         <hr />
-        <button type="button" class="btn btn-link">Signup</button>
         <button type="button" class="btn btn-link">Reset Password</button>
       </form>
     </div>
@@ -23,10 +24,54 @@
   </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators'
+import { loginService } from './../services/security'
+import $ from 'jquery'
+
 export default {
+  data () {
+    return {
+      username: 'systemadmin',
+      password: 'Password123'
+    }
+  },
+  validations: {
+    username: {
+      required
+    },
+    password: {
+      required
+    }
+  },
+  methods: {
+    login (event) {
+      let $buttonLogin = $(event.currentTarget)
+      var loadingText = event.currentTarget.dataset.loadingText
+      if ($buttonLogin.html() !== loadingText) {
+        $buttonLogin.data('original-text', $buttonLogin.html())
+        $buttonLogin.html(loadingText)
+      }
+
+      loginService(this.username, this.password)
+        .then(
+          response => {
+            console.log(response)
+            $buttonLogin.html($buttonLogin.data('original-text'))
+          },
+          error => {
+            console.log(error)
+            $buttonLogin.html($buttonLogin.data('original-text'))
+          }
+        )
+    }
+  }
 }
 </script>
 <style scoped>
+.invalid-input {
+  border: 1px solid red;
+}
+
 .back {
   background: #e2e2e2;
   width: 100%;
