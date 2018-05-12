@@ -4,7 +4,7 @@
     <div class="content">
       <h3>businessDNA Login</h3>
       <hr />
-      <form>
+      <form @submit.prevent="onSubmit">
         <div class="form-group">
           <label for="inputUserName">Username</label>
           <input id="inputUserName" @input="$v.username.$touch()" v-model="username" class="form-control" placeholder="username" autocomplete="off">
@@ -15,7 +15,7 @@
           <input id="inputPassword" @input="$v.password.$touch()" type="password" v-model="password" class="form-control" placeholder="password" autocomplete="off" >
           <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
         </div>
-        <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click="login" class="btn btn-primary">Login</button>
+        <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click.prevent="login" class="btn btn-primary">Login</button>
         <p v-if="invalidLoginResponse" class="invalid-label">{{invalidLoginResponse}}</p>
         <hr />
         <button type="button" class="btn btn-link">Reset Password</button>
@@ -24,18 +24,20 @@
   </div>
   </div>
 </template>
+
 <script>
-import { required } from 'vuelidate/lib/validators'
-import { loginService } from './../services/security'
-import $ from 'jquery'
+import { required } from "vuelidate/lib/validators";
+import { loginService } from "./../services/security";
+import { mapActions } from "vuex";
+import $ from "jquery";
 
 export default {
-  data () {
+  data() {
     return {
-      username: 'systemadmin',
-      password: 'Password123',
-      invalidLoginResponse: ''
-    }
+      username: "systemadmin",
+      password: "Password123",
+      invalidLoginResponse: ""
+    };
   },
   validations: {
     username: {
@@ -46,35 +48,36 @@ export default {
     }
   },
   methods: {
-    login (event) {
-      this.invalidLoginResponse = ''
-      let $buttonLogin = $(event.currentTarget)
-      var loadingText = event.currentTarget.dataset.loadingText
+    login(event) {
+      this.invalidLoginResponse = "";
+      let $buttonLogin = $(event.currentTarget);
+      var loadingText = event.currentTarget.dataset.loadingText;
       if ($buttonLogin.html() !== loadingText) {
-        $buttonLogin.data('original-text', $buttonLogin.html())
-        $buttonLogin.html(loadingText)
+        $buttonLogin.data("original-text", $buttonLogin.html());
+        $buttonLogin.html(loadingText);
       }
 
-      loginService(this.username, this.password)
-        .then(
-          response => {
-            console.log(response)
-            var result = response.body
-            $buttonLogin.html($buttonLogin.data('original-text'))
-            if (!result.isSuccess) {
-              debugger
-              this.invalidLoginResponse = result.message
-            }
-          },
-          error => {
-            console.log(error)
-            $buttonLogin.html($buttonLogin.data('original-text'))
+      loginService(this.username, this.password).then(
+        response => {
+          var result = response.body;
+          $buttonLogin.html($buttonLogin.data("original-text"));
+          if (!result.isSuccess) {
+            this.invalidLoginResponse = result.message;
+          } else {
+            this.$store.dispatch("login", response.body);
+            this.$router.replace("/home");
           }
-        )
+        },
+        error => {
+          console.log(error);
+          $buttonLogin.html($buttonLogin.data("original-text"));
+        }
+      );
     }
   }
-}
+};
 </script>
+
 <style scoped>
 .invalid-input {
   border: 1px solid red;
