@@ -77,7 +77,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .invalid-input {
   border: 1px solid red;

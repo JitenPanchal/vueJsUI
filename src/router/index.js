@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
-import ForgotPassword from '@/components/ForgotPassword'
-import Home from '@/components/Home'
 import store from './../store/store'
 import { isUserAuthenticated } from './../services/localStorage'
+
+import Login from '@/components/login'
+import ForgotPassword from '@/components/ForgotPassword'
+import Home from '@/components/home'
+
+import { getAdministrationRoutes } from './administration'
 
 Vue.use(Router)
 
@@ -24,7 +27,8 @@ var router = new Router({
             path: '/home',
             name: 'Home',
             component: Home
-        }
+        },
+        ...getAdministrationRoutes()
     ]
 })
 
