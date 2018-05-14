@@ -26,9 +26,10 @@ var router = new Router({
         {
             path: '/home',
             name: 'Home',
-            component: Home
+            component: Home,
+            children: getAdministrationRoutes()
         },
-        ...getAdministrationRoutes()
+        // ...getAdministrationRoutes()
     ]
 })
 
