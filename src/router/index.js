@@ -7,7 +7,7 @@ import Login from '@/components/login'
 import ForgotPassword from '@/components/ForgotPassword'
 import Home from '@/components/home'
 
-import { getAdministrationRoutes } from './administration'
+import { routes } from './administration'
 
 Vue.use(Router)
 
@@ -27,7 +27,7 @@ var router = new Router({
             path: '/home',
             name: 'Home',
             component: Home,
-            children: getAdministrationRoutes()
+            children: routes
         },
         // ...getAdministrationRoutes()
     ]

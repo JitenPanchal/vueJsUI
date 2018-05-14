@@ -5,7 +5,7 @@ import Sources  from '@/components/administration/Sources'
 import Users  from '@/components/administration/users'
 
 
-const routes = [
+export const routes = [
     {
         path: '/administration/countries',
         name: 'Countries',
@@ -32,7 +32,3 @@ const routes = [
         component: Users
     }
 ]
-
-export function getAdministrationRoutes() {
-    return routes;
-}
