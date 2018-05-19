@@ -9,6 +9,8 @@ import Home from '@/components/home'
 
 import { routes } from './administration'
 
+
+
 Vue.use(Router)
 
 var router = new Router({

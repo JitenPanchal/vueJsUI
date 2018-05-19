@@ -10,7 +10,9 @@ const state = {
 
 const getters = {
     isUserAuthenticated: function(state) {
-        return state.token !== null;
+        let userId = window.localStorage.getItem('userId')
+        let token = window.localStorage.getItem('token')
+        return userId && token;
     }
 }
 
