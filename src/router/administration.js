@@ -3,6 +3,7 @@ import Regions  from '@/components/administration/regions'
 import Roles  from '@/components/administration/roles'
 import Sources  from '@/components/administration/Sources'
 import Users  from '@/components/administration/users'
+import User  from '@/components/administration/user'
 
 
 export const routes = [
@@ -30,5 +31,11 @@ export const routes = [
         path: '/administration/users',
         name: 'Users',
         component: Users
+    },
+    {
+        path: '/administration/user',
+        name: 'User',
+        component: User
     }
+
 ]
