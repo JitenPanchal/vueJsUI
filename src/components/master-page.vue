@@ -1,7 +1,7 @@
 <template>
   <div>
       <menu-control></menu-control>
-      <router-view name="masterpage"></router-view>
+      <!-- <router-view name="masterpage"></router-view> -->
   </div>
 </template>
 
