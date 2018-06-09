@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div >
      <!-- <master-page></master-page>
     <router-view></router-view>  -->
 
      <nav class="navbar fixed-top header">
         <a class="navbar-brand brand col-md-2 col-sm-5" href="#">
             <i class="fab fa-slack fa-lg brand pr-1"></i>nopCommerce</a>
-        <div class="col-md-9 col-sm-5">
-            <button type="button" class="btn btn-default" id="sidebarCollapse" @click="isHidden = !isHidden">
+        <div class="col-md-9 col-sm-5 pl-0">
+            <button type="button" class="btn btn-default bg-light rounded-0" id="sidebarCollapse" @click="isHidden = !isHidden">
                 <i class="fa fa-bars"></i>
             </button>
         </div>
@@ -16,14 +16,14 @@
     </nav>
 
     <div>
-        <nav id="sidebar" class="hidden-xs-down bg-faded sidebar pr-3" :class="{ active: isHidden }">
+        <!-- <nav id="sidebar" class="hidden-xs-down bg-faded sidebar pr-3" :class="{ active: isHidden }">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <div class="input-group m-2 search-bar">
-                        <input class="form-control p-1 side-bar-search-box" v-model="searchText" @input="onSearchInput" @blur="onBlurSearchInput" type="text"
+                        <input class="form-control p-1 mt-1 side-bar-search-box" v-model="searchText" @input="onSearchInput" @blur="onBlurSearchInput" type="text"
                             placeholder="Search">
                         <span class="input-group-append">
-                            <button class="btn bg-dark" type="button">
+                            <button class="btn bg-dark mt-1" type="button">
                                 <i class="fa fa-search text-white"></i>
                             </button>
                         </span>
@@ -32,6 +32,9 @@
                     </div>
                 </li>
                 <li class="nav-item ml-2">
+                    <a href="#" class="nav-link collapsed text-white" aria-expanded="true">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
                     <a href="#" class="nav-link collapsed text-white" data-toggle="collapse" data-target="#navbarNav" aria-expanded="true">
                         <i class="fas fa-cog mr-2"></i>Administration
                         <i class="fa fa-angle-left ml-2"></i>
@@ -63,7 +66,7 @@
                 </li>
                 <li class="nav-item ml-2">
                     <a href="#" class="nav-link collapsed text-white" data-toggle="collapse" data-target="#navbarNavCaseflow" aria-expanded="true">
-                        <i class="fas fa-user-md mr-2"></i>Caseflow
+                        <i class="fas fa-code-branch mr-2"></i>Caseflow
                         <i class="fa fa-angle-down ml-2"></i>
                     </a>
                     <div class="navbar-collapse collapse" id="navbarNavCaseflow">
@@ -84,8 +87,8 @@
                     </div>
                 </li>
             </ul>
-        </nav>
-        
+        </nav> -->
+        <menu-control v-bind:is-hidden="isHidden"></menu-control>
         <div id="content">
           <router-view></router-view> 
         </div>
@@ -94,88 +97,18 @@
 </template>
 
 <script>
-import masterPage from "./master-page";
-
-
+import MenuControl from "./core/menu.vue";
 
 export default {
-  methods: {},
   components: {
-    masterPage
+    'menu-control':MenuControl
   },
   data() {
     return {
-      isHidden: false,
-      searchText: '',
-      menuItemsJson : '[' +
-'{' +
-'"text":"Administration",' +
-'"items": [' +
-'{ "text":"Users", "parentText": "Administration > Users" },' +
-'{ "text":"Roles", "parentText": "Administration > Roles" },' +
-'{ "text":"Regions", "parentText": "Administration > Regions" },' +
-'{ "text":"Countries", "parentText": "Administration > Countries" },' +
-'{ "text":"Sources", "parentText": "Administration > Sources" }' +
-']' +
-'},' +
-'{' +
-'"text":"Caseflow", ' +
-'"items": [' +
-'{ "text":"Unmatched", "parentText": "Caseflow > Unmatched" },' +
-'{ "text":"Matched", "parentText": "Caseflow > Matched" }' +
-']' +
-'}' +
-']'
+      isHidden: false
     };
   },
   methods: {
-    onSearchInput(event) {
-      debugger
-      let suggestionBox = $("#suggestionBox");
-      let searchText = this.searchText.toLowerCase();
-      let element = event.target;
-
-      suggestionBox.empty();
-
-      let menuItems = jQuery.parseJSON(this.menuItemsJson);
-
-      for (let menuItem of menuItems) {
-        for (let item of menuItem.items) {
-          if (item.text.toLowerCase().startsWith(searchText.toLowerCase())) {
-            var li = $("<li/>")
-              .addClass("list-group-item")
-              .addClass("text-dark")
-              .addClass("search-suggestion-box-item")
-              .text(item.text)
-              .appendTo(suggestionBox);
-          }
-        }
-      }
-
-      // _.forEach(menuItems, function(menuItem) {
-      //   _.forEach(menuItem.items, function(item) {
-      //     if (item.text.toLowerCase().startsWith(searchText.toLowerCase())) {
-      //       var li = $("<li/>")
-      //         .addClass("list-group-item")
-      //         .addClass("text-dark")
-      //         .addClass("search-suggestion-box-item")
-      //         .text(item.text)
-      //         .appendTo(suggestionBox);
-      //     }
-      //   });
-      // });
-
-      if (element.value && suggestionBox.hasClass("d-none"))
-        suggestionBox.removeClass("d-none");
-
-      if (!element.value) {
-        suggestionBox.addClass("d-none");
-      }
-    },
-    onBlurSearchInput(element) {
-      let suggestionBox = $("#suggestionBox");
-      if (!suggestionBox.hasClass("d-none")) suggestionBox.addClass("d-none");
-    }
   }
 };
 </script>

@@ -37,5 +37,4 @@ export const routes = [
         name: 'User',
         component: User
     }
-
 ]

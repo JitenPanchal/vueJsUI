@@ -8,7 +8,7 @@ import ForgotPassword from '@/components/ForgotPassword'
 import Home from '@/components/home'
 
 import { routes } from './administration'
-
+import { searchRoutes } from './search'
 
 
 Vue.use(Router)
@@ -29,8 +29,8 @@ var router = new Router({
             path: '/home',
             name: 'Home',
             component: Home,
-            children: routes
-        },
+            children: routes.concat(searchRoutes)
+        }
         // ...getAdministrationRoutes()
     ]
 })

@@ -1,0 +1,58 @@
+[{
+        "text": "Home",
+        "icon": "fas fa-home",
+        "router-name": "Home",
+        "items": []
+    },
+    {
+        "text": "Search",
+        "icon": "fas fa-search",
+        "router-name": "Search",
+        "items": []
+    },
+    {
+        "text": "Administration",
+        "icon": "fas fa-cog",
+        "items": [{
+                "text": "Users",
+                "router-name": "Users",
+                "parentText": "Administration > Users"
+            },
+            {
+                "text": "Roles",
+                "router-name": "Roles",
+                "parentText": "Administration > Roles"
+            },
+            {
+                "text": "Regions",
+                "router-name": "Regions",
+                "parentText": "Administration > Regions"
+            },
+            {
+                "text": "Countries",
+                "router-name": "Countries",
+                "parentText": "Administration > Countries"
+            },
+            {
+                "text": "Sources",
+                "router-name": "Sources",
+                "parentText": "Administration > Sources"
+            }
+        ]
+    },
+    {
+        "text": "Caseflow",
+        "icon": "fas fa-code-branch",
+        "items": [{
+                "text": "Unmatched",
+                "router-name": "Unmatched",
+                "parentText": "Caseflow > Unmatched"
+            },
+            {
+                "text": "Matched",
+                "router-name": "Matched",
+                "parentText": "Caseflow > Matched"
+            }
+        ]
+    }
+]
