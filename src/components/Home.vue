@@ -89,7 +89,7 @@
             </ul>
         </nav> -->
         <menu-control v-bind:is-hidden="isHidden"></menu-control>
-        <div id="content">
+        <div id="content" :class="{ active: isHidden }" class="">
           <router-view></router-view> 
         </div>
     </div>
@@ -112,3 +112,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+#content {
+    background-color: #ecf0f5 !important;
+}
+</style>

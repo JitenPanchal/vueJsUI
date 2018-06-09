@@ -1,5 +1,64 @@
 <template>
-    <div class="content-wrapper">
+<div>
+    <div>
+        <h2 class="float-left">Users</h2>
+        <div class="float-right">
+            <button type="button" class="btn btn-primary"><i class="fa fa-plus-square"></i> Add new</button>
+        </div>
+    </div>
+    <div class="container-fluid"> 
+        <div class="table-responsive">
+        <table class="table table-striped table-sm table-hover">
+            <thead>
+                <tr role="row">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th >Last Login Date</th>
+                    <th >Last Activity Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in users" :key="user.id">
+                    <td >{{user.name}}</td>
+                    <td >{{user.email}}</td>
+                    <td >{{user.lastActivityDate}}</td>
+                    <td >{{user.lastLoginDate}}</td>
+                    <td>
+                        <button type="button" class="btn btn-secondary"><i class="fa fa-edit mr-1"></i>Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <!-- <table class="table  table-hover table-sm">
+        <thead>
+            <tr role="row">
+                <th>Name</th>
+                <th>Email</th>
+                <th style="width: 180px;">Last Login Date</th>
+                <th style="width: 180px;">Last Activity Date</th>
+                <th style="width: 205px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="user in users" :key="user.id">
+                <td >{{user.name}}</td>
+                <td >{{user.email}}</td>
+                <td >{{user.lastActivityDate}}</td>
+                <td >{{user.lastLoginDate}}</td>
+                <td>
+                    <button type="button" class="btn btn-dark"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-dark"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-dark"><i class="fa fa-lock"></i></button>
+                    <button type="button" class="btn btn-dark"><i class="fa fa-unlock"></i></button>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+</div>
+    <!-- <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="card mb-3" style="top:64px !important" >
                     <div class="card-header">
@@ -26,7 +85,7 @@
                                             style="width: 100%;">
                                             <thead>
                                                 <tr role="row">
-                                                    <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"
+                                                    <th  tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending"
                                                         >Name</th>
                                                     <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending"
                                                         >Email</th>
@@ -80,45 +139,44 @@
                     </div>
                 </div>
             </div>
-    </div>
+    </div> -->
+    
 </template>
 
 <script>
-import showEntries from './../core/grid/show-entries'
-import gridSearch from './../core/grid/grid-search'
-import {getUsers} from './../../services/administration/user'
+import showEntries from "./../core/grid/show-entries";
+import gridSearch from "./../core/grid/grid-search";
+import { getUsers } from "./../../services/administration/user";
 
 export default {
-    components: {
-        'show-entries': showEntries,
-        'grid-search': gridSearch
+  components: {
+    "show-entries": showEntries,
+    "grid-search": gridSearch
+  },
+  data() {
+    return {
+      users: []
+    };
+  },
+  mounted() {
+    getUsers("", 1, 10).then(
+      response => {
+        this.users = response.body;
+        console.log(this.users);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  },
+  methods: {
+    onClickNew: function() {
+      this.$router.push({ name: "User" });
     },
-    data(){
-        return {
-            users:[]
-        }
-    },
-    mounted() {
-        getUsers('',1, 10).then(
-            response => 
-            {
-                this.users = response.body;
-                console.log(this.users);
-            }, 
-            error => {
-                console.log(error);
-            }
-        )
-    },
-    methods:{
-        onClickNew: function(){
-            this.$router.push({ name: 'User'});
-        },
-        onShowEntriesChange: function(event){
-        },
-        onEnterKeyPressed: function(event){
-            console.log(event)
-        }
+    onShowEntriesChange: function(event) {},
+    onEnterKeyPressed: function(event) {
+      console.log(event);
     }
-}
+  }
+};
 </script>

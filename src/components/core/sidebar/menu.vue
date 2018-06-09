@@ -3,7 +3,7 @@
       <ul class="navbar-nav">
           <li class="nav-item">
               <div class="input-group m-2 search-bar">
-                  <input class="form-control p-1 mt-1 side-bar-search-box" v-model="searchText" @input="onSearchInput" @blur="onBlurSearchInput" type="text"
+                  <input class="form-control p-1 mt-1 side-bar-search-box" v-model="searchText" @input="onSearchInput" type="text"
                       placeholder="Search">
                   <span class="input-group-append">
                       <button class="btn bg-dark mt-1" type="button">
@@ -72,10 +72,6 @@ export default {
         }
       }
     },
-    onBlurSearchInput(element) {
-      //  this.suggestionItems = [];
-    },
-
     onSuggestionItemClicked(item) {
       this.$router.push({ name: item["router-name"] });
       this.suggestionItems = [];
