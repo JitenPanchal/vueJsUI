@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import MenuControl from "./core/menu.vue";
+import MenuControl from "./core/sidebar/menu.vue";
 
 export default {
   components: {
