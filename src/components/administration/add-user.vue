@@ -22,8 +22,9 @@
              <div class="form-group row">
                 <label  class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                <input class="form-control" @input="$v.email.$touch()" type="text" placeholder="Email" v-model="email">
-                <p class="invalid-label" :class="[{ visible: $v.email.$error }, { invisible: !$v.email.$error } ]">Email is required</p>
+                <input class="form-control" @input="$v.emailValue.$touch()" type="text" placeholder="Email" v-model="email">
+                <p class="invalid-label" :class="[{ visible: !$v.emailValue.required }, { invisible: $v.emailValue.required } ]">Email is required</p>
+                <p class="invalid-label" :class="[{ visible: !$v.emailValue.email }, { invisible: $v.emailValue.email } ]">Email is invalid</p>
                 </div>
             </div>
             <div class="form-group row">
@@ -47,7 +48,7 @@
 
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required, email } from "vuelidate/lib/validators";
 import $ from "jquery";
 
 export default {
@@ -64,8 +65,9 @@ export default {
     username: {
       required
     },
-    email: {
-      required
+    emailValue: {
+      required,
+      email
     },
     password: {
       required
