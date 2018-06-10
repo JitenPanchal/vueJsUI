@@ -1,58 +1,34 @@
 <template>
-<!-- <div class="back">
-  <div class="div-center">
-    <div class="content">
-      <h3>businessDNA Login</h3>
-      <hr />
-      <form @submit.prevent="onSubmit">
-        <div class="form-group">
-          <label for="inputUserName">Username</label>
-          <input id="inputUserName" @input="$v.username.$touch()" v-model="username" class="form-control" placeholder="username" autocomplete="off">
-          <p v-if="$v.username.$error" class="invalid-label">Username is required</p>
-        </div>
-        <div class="form-group">
-          <label for="inputPassword">Password</label>
-          <input id="inputPassword" @input="$v.password.$touch()" type="password" v-model="password" class="form-control" placeholder="password" autocomplete="off" />
-          <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
-        </div>
-        <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click.prevent="login" class="btn btn-primary">Login</button>
-        <p v-if="invalidLoginResponse" class="invalid-label">{{invalidLoginResponse}}</p>
-        <hr />
-        <button type="button" class="btn btn-link">Reset Password</button>
-      </form>
-    </div>
-  </div>
-  </div> -->
 <div class="back">
-      <div class="div-center">
-          <div class="content">
-              <div class="container">
-                  <h3 class="text-center">
-                      <i class="far fa-user"></i> Login</h3>
-                  <hr />
-                   <form @submit.prevent="onSubmit">
-                    <div class="form-group">
-                         <label for="inputUserName">Username</label>
-                        <input id="inputUserName" @input="$v.username.$touch()" type="text" v-model="username" class="form-control" placeholder="username" autocomplete="off">
-                        <p v-if="$v.username.$error" class="invalid-label">Username is required</p>
-                    </div>
-                    <div class="form-group">
-                       <label for="inputPassword">Password</label>
-                      <input id="inputPassword" @input="$v.password.$touch()" type="password" v-model="password" class="form-control" placeholder="password" autocomplete="off" />
-                      <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click.prevent="login" class="btn btn-primary">Login</button>
-                      <button type="button" class="btn btn-link">Reset Password</button>
-                    </div>
-                    <p v-show="invalidLoginResponse" class="invalid-label text-center font-weight-bold">{{invalidLoginResponse}}</p>
-                    <hr />
-                    
-                  </form>
-              </div>
+  <div class="div-center">
+      <div class="content">
+          <div class="container">
+              <h3 class="text-center">
+                  <i class="far fa-user mr-2"></i>Login</h3>
+              <hr />
+                <form>
+                <div class="form-group">
+                      <label for="inputUserName">Username</label>
+                    <input id="inputUserName" @input="$v.username.$touch()" type="text" v-model="username" class="form-control" placeholder="username" autocomplete="off">
+                    <p v-if="$v.username.$error" class="invalid-label">Username is required</p>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                  <input id="inputPassword" @input="$v.password.$touch()" type="password" v-model="password" class="form-control" placeholder="password" autocomplete="off" />
+                  <p v-if="$v.password.$error" class="invalid-label">Password is required</p>
+                </div>
+                <div class="form-group">
+                  <button type="submit" id="buttonLogin" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Login" :disabled="$v.$invalid" @click.prevent="login" class="btn btn-primary">Login</button>
+                  <button type="button" class="btn btn-link">Reset Password</button>
+                </div>
+                <p v-show="invalidLoginResponse" class="invalid-label text-center font-weight-bold">{{invalidLoginResponse}}</p>
+                <hr />
+                
+              </form>
           </div>
       </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -108,13 +84,7 @@ export default {
 };
 </script>
 <style scoped>
-.invalid-input {
-  border: 1px solid red;
-}
 
-.invalid-label {
-  color: red;
-}
 
 .back {
     background: #e2e2e2;

@@ -4,7 +4,7 @@ import store from './../store/store'
 import { isUserAuthenticated } from './../services/localStorage'
 
 import Login from '@/components/login'
-import ForgotPassword from '@/components/ForgotPassword'
+import ForgotPassword from '@/components/forgot-password'
 import Home from '@/components/home'
 
 import { routes } from './administration'
