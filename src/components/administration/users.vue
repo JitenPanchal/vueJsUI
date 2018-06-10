@@ -1,32 +1,30 @@
 <template>
-<div>
-    <div>
-        <h2 class="float-left">Users</h2>
-        <div class="float-right">
-            <button type="button" class="btn btn-primary"><i class="fa fa-plus-square"></i> Add new</button>
-        </div>
+ <div class="container-fluid p-3">
+    <div class="clearfix">
+        <h3 class="float-left">Users</h3>
+        <button type="button" class="btn btn-primary float-right" @click="$router.replace({ name: 'AddUser' })"><i class="fa fa-plus-square  mr-2"></i>Add new</button>
     </div>
-    <div class="container-fluid"> 
+    
+    <div class="container-fluid bg-white p-4 mt-2"> 
         <div class="table-responsive">
-        <table class="table table-striped table-sm table-hover">
+        <table class="table table-sm table-hover ">
             <thead>
                 <tr role="row">
                     <th>Name</th>
                     <th>Email</th>
                     <th >Last Login Date</th>
                     <th >Last Activity Date</th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="user in users" :key="user.id">
-                    <td >{{user.name}}</td>
+                    <td>
+                        <router-link :to="{ name: 'User', params: { id: user.id } }">
+                         {{user.name}}</router-link>
+                    </td>
                     <td >{{user.email}}</td>
                     <td >{{user.lastActivityDate}}</td>
                     <td >{{user.lastLoginDate}}</td>
-                    <td>
-                        <button type="button" class="btn btn-secondary"><i class="fa fa-edit mr-1"></i>Edit</button>
-                    </td>
                 </tr>
             </tbody>
         </table>
@@ -176,6 +174,11 @@ export default {
     onShowEntriesChange: function(event) {},
     onEnterKeyPressed: function(event) {
       console.log(event);
+    },
+    onUserSelected: function(userId, event) {
+      console.log(userId);
+      console.log(event);
+      this.$router.push({ name: "User", params: { id: userId } });
     }
   }
 };

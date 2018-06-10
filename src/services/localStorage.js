@@ -1,7 +1,8 @@
 export function clearAuthenticatedUser() {
-    window.localStorage.removeItem("token");
-    window.localStorage.removeItem("userId");
-    window.localStorage.removeItem("expirationDateTime");
+    // window.localStorage.removeItem("token");
+    // window.localStorage.removeItem("userId");
+    // window.localStorage.removeItem("expirationDateTime");
+    window.localStorage.clear();
 }
 
 export function saveAuthenticatedUser(authData) {
@@ -13,5 +14,5 @@ export function saveAuthenticatedUser(authData) {
 export function isUserAuthenticated() {
     let userId = window.localStorage.getItem('userId')
     let token = window.localStorage.getItem('token')
-    return userId && token;
+    return userId != null && token != null;
 }

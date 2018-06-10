@@ -89,7 +89,7 @@
             </ul>
         </nav> -->
         <menu-control v-bind:is-hidden="isHidden"></menu-control>
-        <div id="content" :class="{ active: isHidden }" class="">
+        <div id="content" :class="{ active: isHidden }">
           <router-view></router-view> 
         </div>
     </div>

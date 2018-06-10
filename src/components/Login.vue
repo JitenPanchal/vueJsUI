@@ -33,7 +33,7 @@
                    <form @submit.prevent="onSubmit">
                     <div class="form-group">
                          <label for="inputUserName">Username</label>
-                        <input id="inputUserName" @input="$v.username.$touch()" v-model="username" class="form-control" placeholder="username" autocomplete="off">
+                        <input id="inputUserName" @input="$v.username.$touch()" type="text" v-model="username" class="form-control" placeholder="username" autocomplete="off">
                         <p v-if="$v.username.$error" class="invalid-label">Username is required</p>
                     </div>
                     <div class="form-group">

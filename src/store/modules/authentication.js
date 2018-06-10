@@ -12,7 +12,7 @@ const getters = {
     isUserAuthenticated: function(state) {
         let userId = window.localStorage.getItem('userId')
         let token = window.localStorage.getItem('token')
-        return userId && token;
+        return userId != null && token != null;
     }
 }
 
@@ -40,7 +40,7 @@ const actions = {
         saveAuthenticatedUser(authData);
         commit('saveAuthenticatedUser', authData);
         dispatch("setLogoutTimer", authData.expiresIn);
-        // router.replace("/home");
+        router.replace("/home");
     },
     logout: function ({ state, dispatch, commit }) {
         commit('clearAuthenticatedUser');

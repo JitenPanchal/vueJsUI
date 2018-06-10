@@ -10,6 +10,7 @@ import store from './store/store'
 Vue.config.productionTip = false
 Vue.use(Vuelidate)
 Vue.use(VueResource)
+Vue.use(store)
 
 /* eslint-disable no-new */
 new Vue({
