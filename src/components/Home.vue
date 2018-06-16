@@ -2,9 +2,23 @@
   <div >
      <!-- <master-page></master-page>
     <router-view></router-view>  -->
+    <!-- <div class="alert alert-warning alert-dismissible app-alert" style="z-index:1000000 !important" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div> -->
 
+    <div class="position-absolute app-alert">
+        <div class="alert alert-warning fade alert-dismissible app-alert-content" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    </div>
     <nav class="navbar fixed-top header">
-        <span class="col-md-2 col-sm-2 brand-title text-nowrap pl-0 ml-0"><i class="fab fa-slack fa-lg brand-icon pr-1"></i>nopCommerce</span>
+        <span class="col-md-2 col-sm-2 brand-title text-nowrap pl-0 ml-0"><i class="fab fa-slack fa-lg brand-icon pr-2"></i>e-Commerce</span>
         <div class="col-md-8 col-sm-8">
             <button type="button" class="btn btn-default bg-light rounded-0" id="sidebarCollapse" @click="isHidden = !isHidden">
                 <i class="fa fa-bars"></i>

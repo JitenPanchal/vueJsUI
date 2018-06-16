@@ -12,37 +12,36 @@
             </div>
         </div>
         <div class="bg-white p-4 mt-2"> 
-            <form>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Name</label>
-                <div class="col-sm-10">
-                <input class="form-control" @input="$v.username.$touch()" type="text" placeholder="User" v-model="username">
-                <p class="invalid-label" :class="[{ visible: $v.username.$error }, { invisible: !$v.username.$error } ]">Username is required</p>
+            <form class="needs-validation">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" @input="$v.username.$touch()" type="text" placeholder="User" v-model="username">
+                        <p class="invalid-label" v-if="$v.username.$error">Username is required</p>
+                    </div>
                 </div>
-            </div>
-             <div class="form-group row">
-                <label  class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                <input class="form-control" @input="$v.emailValue.$touch()" type="text" placeholder="Email" v-model="email">
-                <p class="invalid-label" :class="[{ visible: !$v.emailValue.required }, { invisible: $v.emailValue.required } ]">Email is required</p>
-                <p class="invalid-label" :class="[{ visible: !$v.emailValue.email }, { invisible: $v.emailValue.email } ]">Email is invalid</p>
+                <div class="form-group row">
+                    <label  class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                    <input class="form-control" @input="$v.emailValue.$touch()" type="text" placeholder="Email" v-model="email">
+                    <p class="invalid-label" v-if="$v.emailValue.$error">Email is required</p>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                <input type="password" @input="$v.password.$touch()" class="form-control" v-model="password" placeholder="Password">
-                <p class="invalid-label" :class="[{ visible: $v.password.$error }, { invisible: !$v.password.$error } ]">Password is required</p>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                    <input type="password" @input="$v.password.$touch()" class="form-control" v-model="password" placeholder="Password">
+                    <p class="invalid-label" v-if="$v.password.$error">Password is required</p>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
-                <div class="col-sm-10">
-                <input type="password" @input="$v.confirmPassword.$touch()" class="form-control" v-model="confirmPassword" placeholder="Confirm Password">
-                <p class="invalid-label" :class="[{ visible: $v.confirmPassword.$error }, { invisible: !$v.confirmPassword.$error } ]">Confirm Password is required</p>
+                <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                    <input type="password" @input="$v.confirmPassword.$touch()" class="form-control" v-model="confirmPassword" placeholder="Confirm Password">
+                    <p class="invalid-label" v-if="$v.confirmPassword.$error">Confirm Password is required</p>
+                    </div>
                 </div>
-            </div>
-            </form>
+            </form> 
         </div>
     </div>
 </template>
@@ -78,10 +77,17 @@ export default {
     }
   },
   methods: {
+      isValidEmail(v){
+        return v.emailValue.required && v.emailValue.email;
+      },
       save(){
 
       },
       onSaveClick(){
+        $(".alert").css("display", "");
+        $(".alert").removeClass("fade");
+        $(".alert").addClass("show");
+        $(".alert").delay(3000).addClass("fade").fadeOut(2000);
         this.$v.$touch();
       },
       onSaveNewClick(){
