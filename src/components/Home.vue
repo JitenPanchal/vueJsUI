@@ -3,16 +3,17 @@
      <!-- <master-page></master-page>
     <router-view></router-view>  -->
 
-     <nav class="navbar fixed-top header">
-        <a class="navbar-brand brand col-md-2 col-sm-5" href="#">
-            <i class="fab fa-slack fa-lg brand pr-1"></i>nopCommerce</a>
-        <div class="col-md-9 col-sm-5 pl-0">
+    <nav class="navbar fixed-top header">
+        <span class="col-md-2 col-sm-2 brand-title text-nowrap pl-0 ml-0"><i class="fab fa-slack fa-lg brand-icon pr-1"></i>nopCommerce</span>
+        <div class="col-md-8 col-sm-8">
             <button type="button" class="btn btn-default bg-light rounded-0" id="sidebarCollapse" @click="isHidden = !isHidden">
                 <i class="fa fa-bars"></i>
             </button>
         </div>
-        <a class="nav-link text-white text-center" href="#" @click.prevent='$store.dispatch("logout")'>
+        <div class="col-md-2 col-sm-2">
+            <a class="nav-link text-white text-right pr-0" href="#" @click.prevent='$store.dispatch("logout")'>
             <i class="fas fa-sign-out-alt mr-1"></i>Logout</a>
+        </div>
     </nav>
 
     <div>

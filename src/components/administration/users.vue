@@ -1,8 +1,12 @@
 <template>
  <div class="container-fluid p-3">
-    <div class="clearfix">
-        <h3 class="float-left">Users</h3>
-        <button type="button" class="btn btn-primary float-right" @click="$router.replace({ name: 'AddUser' })"><i class="fa fa-plus-square  mr-2"></i>Add new</button>
+    <div class="row">
+        <div class="col-sm-9 col-md-9">
+            <h2 class="d-inline">User</h2>
+        </div>
+        <div class="col-sm-3 col-md-3 text-right">
+            <button type="button" class="btn btn-primary float-right" @click="$router.replace({ name: 'AddUser' })"><i class="fa fa-plus-square  mr-2"></i>Add new</button>
+        </div>
     </div>
     
     <div class="container-fluid bg-white p-4 mt-2"> 

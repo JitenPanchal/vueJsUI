@@ -1,13 +1,14 @@
 <template>
     <div class="container-fluid p-3">
-        <div class="clearfix">
-            <h2 class="float-left">Create User</h2>
-            <router-link :to="{ name: 'Users' }" class="back-link ml-3">
-                <i class="fa fa-arrow-circle-left mr-1"></i>back to users
-            </router-link>
-            <div class="float-right">
-                <button type="button" class="btn btn-primary" @click="onSaveClick"><i class="fa fa-save mr-2"></i>Save</button>&nbsp;&nbsp;
-                <button type="button" class="btn btn-primary" @click="onSaveNewClick"><i class="fa fa-save ml-2 mr-2"></i>Save &amp; new</button>
+        <div class="row">
+            <div class="col-sm-9 col-md-9">
+                    <h2 class="d-inline">Create User</h2> <router-link :to="{ name: 'Users' }" class="back-link ml-3">
+                    <i class="fa fa-arrow-circle-left mr-1"></i>back to users
+                </router-link>
+            </div>
+            <div class="col-sm-3 col-md-3 text-right">
+                <button type="button" class="btn btn-primary" @click="onSaveClick"><i class="fa fa-save mr-2"></i>Save</button>
+                <button type="button" class="btn btn-primary" @click="onSaveNewClick"><i class="fa fa-save mr-2"></i>Save &amp; new</button>
             </div>
         </div>
         <div class="bg-white p-4 mt-2"> 
