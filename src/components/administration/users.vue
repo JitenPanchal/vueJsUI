@@ -149,6 +149,7 @@
 import showEntries from "./../core/grid/show-entries";
 import gridSearch from "./../core/grid/grid-search";
 import { getUsers } from "./../../services/administration/user";
+import { EventBus } from '../../main.js'
 
 export default {
   components: {
@@ -161,13 +162,15 @@ export default {
     };
   },
   mounted() {
+    EventBus.$emit("onBeforeApiRequest");
     getUsers("", 1, 10).then(
       response => {
         this.users = response.body;
-        console.log(this.users);
+        EventBus.$emit("onAfterApiRequest");
       },
       error => {
         console.log(error);
+        EventBus.$emit("onAfterApiRequest");
       }
     );
   },

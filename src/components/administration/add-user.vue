@@ -1,12 +1,12 @@
 <template>
     <div class="container-fluid p-3">
         <div class="row">
-            <div class="col-sm-9 col-md-9">
+            <div class="col-sm-6 col-md-6">
                     <h2 class="d-inline">Create User</h2> <router-link :to="{ name: 'Users' }" class="back-link ml-3">
                     <i class="fa fa-arrow-circle-left mr-1"></i>back to users
                 </router-link>
             </div>
-            <div class="col-sm-3 col-md-3 text-right">
+            <div class="col-sm-6 col-md-6 text-right">
                 <button type="button" class="btn btn-primary" @click="onSaveClick"><i class="fa fa-save mr-2"></i>Save</button>
                 <button type="button" class="btn btn-primary" @click="onSaveNewClick"><i class="fa fa-save mr-2"></i>Save &amp; new</button>
             </div>
@@ -81,14 +81,13 @@ export default {
         return v.emailValue.required && v.emailValue.email;
       },
       save(){
-
       },
       onSaveClick(){
         $(".alert").css("display", "");
         $(".alert").removeClass("fade");
         $(".alert").addClass("show");
         $(".alert").delay(3000).addClass("fade").fadeOut(2000);
-        this.$v.$touch();
+        // this.$v.$touch();        
       },
       onSaveNewClick(){
 

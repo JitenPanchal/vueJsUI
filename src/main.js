@@ -12,6 +12,8 @@ Vue.use(Vuelidate)
 Vue.use(VueResource)
 Vue.use(store)
 
+export const EventBus = new Vue();
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -22,3 +24,4 @@ new Vue({
   },
   template: '<App/>'
 })
+
